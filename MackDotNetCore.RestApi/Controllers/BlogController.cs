@@ -1,5 +1,6 @@
 ﻿using MackDotNetCore.RestApi.Model;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MackDotNetCore.RestApi.Controllers
@@ -29,7 +30,7 @@ namespace MackDotNetCore.RestApi.Controllers
                 return Ok(new BlogListResponseModel
                 {
                     IsSuccess = false,
-                    Message = ex.Message,// return summary message
+                    Message = ex.Message// return summary message
                    /* Message = ex.ToString()*/,// return detail error
                 });
 
@@ -66,28 +67,89 @@ namespace MackDotNetCore.RestApi.Controllers
             BlogResponseModel model = new BlogResponseModel
             {
                 IsSuccess = result > 0,
-                Message = result > 0 ? "Saving Successful" : "Saving Failed."
+                Message = result > 0 ? "Saving Successful" : "Saving Failed.",
                 Data = blog
             };
-                return Ok(model);
+            return Ok(model);
         }
 
-        [HttpPut]
-        public IActionResult UpdateBlog()
+        [HttpPut("{id}")]
+        public IActionResult UpdateBlog(int id, BlogDataModel blog)
         {
-            return Ok();
+            AppDBContext db = new AppDBContext();
+            var item = db.Blogs.FirstOrDefault(x => x.blog_id == id);
+            if (item is null)
+            {
+                var response = new { IsSuccess = false, Message = "No data found." };
+                return NotFound(response);
+            }
+            item.blog_title = blog.blog_title;
+            item.blog_authour = blog.blog_authour;
+            item.blog_content = blog.blog_content;
+            var result = db.SaveChanges();
+            BlogResponseModel model = new BlogResponseModel
+            {
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Saving Successful" : "Saving Failed.",
+                Data = blog
+
+            };
+            return Ok(item);
+
         }
 
-        [HttpPatch]
-        public IActionResult PatchBlog()
+        [HttpPatch("{id}")]
+        public IActionResult PatchBlog(int id, BlogDataModel blog)
         {
-            return Ok();
+            AppDBContext db = new AppDBContext();
+            var item = db.Blogs.FirstOrDefault(x => x.blog_id == id);
+            if (item is null)
+            {
+                var response = new { IsSuccess = false, Message = "No data found." };
+                return NotFound(response);
+            }
+            if (!string.IsNullOrEmpty(blog.blog_title))
+            {
+                item.blog_title = blog.blog_title;
+            }
+            if (!string.IsNullOrEmpty(blog.blog_authour))
+            {
+                item.blog_authour = blog.blog_authour;
+            }
+            if (!string.IsNullOrEmpty(blog.blog_content))
+            {
+                item.blog_content = blog.blog_content;
+            }
+            var result = db.SaveChanges();
+            BlogResponseModel model = new BlogResponseModel
+            {
+                IsSuccess =result >0,
+                Message =result>0? "Updating Successful":" Updating failed.",
+                Data = item
+            };
+            return Ok(model);
         }
 
-        [HttpDelete]
-        public IActionResult DeleteBlog()
+        [HttpDelete("{id}")]
+        public IActionResult DeleteBlog(int id )
         {
-            return Ok();
+            AppDBContext db = new AppDBContext();
+            var item = db.Blogs.FirstOrDefault(x => x.blog_id == id);
+            if (item is null)
+            {
+                var response = new { IsSuccess = false, Message = "No data found." };
+                return NotFound(response);
+            }
+            db.Blogs.Remove(item);  
+           var result = db.SaveChanges();
+            BlogResponseModel model = new BlogResponseModel
+            {
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Deleting Successful" : " Deleting failed.",
+                Data = item
+            };
+
+            return Ok(model);
         }
 
     }
