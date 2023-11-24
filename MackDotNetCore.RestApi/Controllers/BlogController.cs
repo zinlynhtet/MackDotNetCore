@@ -123,15 +123,15 @@ namespace MackDotNetCore.RestApi.Controllers
             var result = db.SaveChanges();
             BlogResponseModel model = new BlogResponseModel
             {
-                IsSuccess =result >0,
-                Message =result>0? "Updating Successful":" Updating failed.",
+                IsSuccess = result > 0,
+                Message = result > 0 ? "Updating Successful" : " Updating failed.",
                 Data = item
             };
             return Ok(model);
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteBlog(int id )
+        public IActionResult DeleteBlog(int id)
         {
             AppDBContext db = new AppDBContext();
             var item = db.Blogs.FirstOrDefault(x => x.blog_id == id);
@@ -140,8 +140,8 @@ namespace MackDotNetCore.RestApi.Controllers
                 var response = new { IsSuccess = false, Message = "No data found." };
                 return NotFound(response);
             }
-            db.Blogs.Remove(item);  
-           var result = db.SaveChanges();
+            db.Blogs.Remove(item);
+            var result = db.SaveChanges();
             BlogResponseModel model = new BlogResponseModel
             {
                 IsSuccess = result > 0,
