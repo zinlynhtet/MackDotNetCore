@@ -126,20 +126,23 @@ namespace MackDotNetCore.RestApi.Controllers
       ,[blog_authour] = @blog_authour
       ,[blog_content] = @blog_content
  WHERE blog_Id = @blog_id";
+
+
+
             string conditions = "";
             if (!string.IsNullOrEmpty(blog.blog_title))
             {
-                query += " [blog_title] =@blog_title,";
+               conditions += " [blog_title] =@blog_title, ";
                 item.blog_title = blog.blog_title;
             }
             if (!string.IsNullOrEmpty(blog.blog_authour))
             {
-                query += " [blog_authour] =@blog_authour,";
+                conditions += " [blog_authour] =@blog_authour, ";
                 item.blog_authour = blog.blog_authour;
             }
             if (!string.IsNullOrEmpty(blog.blog_content))
             {
-                query += " [blog_content] =@blog_content,";
+                conditions += " [blog_content] =@blog_content, ";
                 item.blog_content = blog.blog_content;
             }
             if (conditions.Length == 0)
@@ -156,7 +159,7 @@ namespace MackDotNetCore.RestApi.Controllers
             using IDbConnection db2 = new SqlConnection(sqlconnectionStringBuilder.ConnectionString);
             int result = db2.Execute(query, blog);
 
-            BlogResponseModel model = new BlogResponseModel
+            BlogResponseModel model = new BlogResponseModel()
             {
                 IsSuccess = result > 0,
                 Message = result > 0 ? "Updating Successful" : " Updating failed.",
