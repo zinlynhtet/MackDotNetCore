@@ -16,7 +16,7 @@ namespace MackDotNetCore.RestApi.Controllers
             try
             {
                 AppDBContext dbContext = new AppDBContext();
-                List<BlogDataModel> lst = dbContext.Blogs.ToList();
+                List<BlogDataModel> lst = dbContext.Blogs.ToList(); 
                 BlogListResponseModel model = new BlogListResponseModel
                 {
                     IsSuccess = true,
