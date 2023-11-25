@@ -94,7 +94,7 @@ namespace MackDotNetCore.RestApi.Controllers
                 Data = blog
 
             };
-            return Ok(item);
+            return Ok(model);
 
         }
 
