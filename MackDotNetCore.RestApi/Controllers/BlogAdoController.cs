@@ -224,11 +224,11 @@ namespace MackDotNetCore.RestApi.Controllers
                            WHERE blog_Id = @blog_id";
 
             using SqlCommand cmd2 = new SqlCommand(query, connection);
-   
-            cmd.Parameters.AddWithValue("@blog_title", blog.blog_title);
-            cmd.Parameters.AddWithValue("@blog_authour", blog.blog_authour);
-            cmd.Parameters.AddWithValue("@blog_content", blog.blog_content);
-            int result = cmd.ExecuteNonQuery();
+            cmd2.Parameters.AddWithValue("@blog_id", id);
+            cmd2.Parameters.AddWithValue("@blog_title", blog.blog_title);
+            cmd2.Parameters.AddWithValue("@blog_authour", blog.blog_authour);
+            cmd2.Parameters.AddWithValue("@blog_content", blog.blog_content);
+            int result = cmd2.ExecuteNonQuery();
             connection.Close();
             BlogListResponseModel model = new BlogListResponseModel()
             {
