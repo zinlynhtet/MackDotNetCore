@@ -79,7 +79,10 @@ function confirmMessage(message) {
                           </td>
                           <td>${index + 1}</td>
                           <td>${value.UserName}</td>
-                          <td>${value.UserMail}</td>                  
+                          <td>${value.UserMail}</td>
+                          <td>${value.Date}</td>
+                          <td>${value.Option1}</td>
+
                       </tr>`;
     });
 
