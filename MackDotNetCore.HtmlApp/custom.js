@@ -20,18 +20,37 @@ function uuidv4() {
     );
 }
 
+// function confirmMessage(message) {
+//     return new Promise((resolve, reject) => {
+//         Swal.fire({
+//             title: "Confirm",
+//             text: message,
+//             icon: "warning",
+//             showCancelButton: true,
+//         }).then((result) => {
+//             // return result.isConfirmed;
+//             resolve(result.isConfirmed)
+//         });
+//     });
+// }
 function confirmMessage(message) {
-    return new Promise((resolve, reject) => {
-        Swal.fire({
-            title: "Confirm",
-            text: message,
-            icon: "warning",
-            showCancelButton: true,
-        }).then((result) => {
-            // return result.isConfirmed;
-            resolve(result.isConfirmed)
-        });
-    });
+    return new Promise((resolve, reject) => { 
+        Notiflix.Confirm.show(
+            'Confirm',
+            message,
+            'Yes',
+            'No',
+            function okCb() {
+                resolve(true);
+            },
+            function cancelCb() {
+                resolve(false);
+            },
+            {
+            },
+        );
+    })
+        
 }
 
  function readUser() {
@@ -60,6 +79,9 @@ function confirmMessage(message) {
                           </td>
                           <td>${index + 1}</td>
                           <td>${value.UserName}</td>
+                          <td>${value.UserMail}</td>
+
+
                       </tr>`;
     });
 
