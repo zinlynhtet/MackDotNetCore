@@ -1,160 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      integrity="sha512-Avb2QiuDEEvB4bZJYdft2mNjVShBftLdPG8FJ0V7irTLQ8Uo0qcPxh4Plq7G5tGm0rU+1SPhVotteLpBERwTkw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="plugins/notiflix/notiflix-3.2.6.min.css">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-            crossorigin="anonymous">
-    </head>
+  </head>
 
-    <body>
-        <article class="text-center" id="hello">
-            <div class="nav bg-black text-light d-flex justify-content-center">
-                <h1>Blog Table</h1></div>
-            <div class="formInput d-flex justify-content-center my-2">
-                <label class="fw-bold fs-5">User <span class="text-success">name:</span></label>
+  <body>
+    <div
+      class="nav bg-black d-flex justify-content-center text-light">
+      <h3>Register Form</h3>
+    </div>
 
-                <input
-                    class="form-control w-25 border-3 border-info text-start"
-                    type="text" placeholder="Enter your name" id="txtUserName"
-                    required />
-            </div>
-            <div class="formInput d-flex justify-content-center">
-                <label class="fw-bold fs-5">User <span class="text-success">Email:</span></label>
+    <div class="hero d-flex justify-content-center gap-3 mt-3 ">
+      <label class="fw-bold fs-3 ">User <span class="text-success">Name</span></label>
+      <input class="form-control w-25" type="text" id="txtUserName"
+        placeholder="Enter your name" required />
+      <label class="fw-bold fs-3 ">User<span class="text-success">Email</span></label>
+      <input class="form-control w-25" type="email" id="txtUserMail"
+        placeholder="Enter your Email" required />
+      <button type="button" class="btn btn-dark" id="btnCancel">Cancel</button>
+      <button type="button" class="btn btn-success" id="btnSave">Save</button>
 
-                <input
-                    class="form-control w-25 border-3 border-info text-start"
-                    type="text" placeholder="Enter your email"
-                    id="txtUserEmail" required />
-            </div>
-            <button type="button" class="btn btn-success my-3" id="btnSave">Save</button>
+    </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th scope="col">#</th>
+          <th scope="col">User Name</th>
+          <th scope="col">User Email</th>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col ">No</th>
-                        <th scope="col">User Name</th>
-                        <th scope="col">Email</th>
-                    </tr>
-                </thead>
-                <tbody id="tbTbody">
+        </tr>
+      </thead>
+      <tbody id="tbTbody"></tbody>
+    </table>
 
-                </tbody>
-            </table>
-        </article>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-            crossorigin="anonymous"></script>
-        <script>
-        
-        readUser();
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+      integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="custom.js"></script>
+    <script src="plugins/notiflix/notiflix-3.2.6.min.js"></script>
+    <script>
+      var _userId = null;
 
-        $('#btnSave').click(function () {
-            const text = $('#txtUserName').val();
-            const userMail = $('#txtUserEmail').val();
-          
-            // $('.txtText').html(text);
-             if (text.trim() !== '' && userMail.trim() !== '') {
-                // Perform save action here
-                alert('Data saved!');
-            } else {
-                // Display an error message or handle the case where inputs are not filled
-                alert('Please fill in both input boxes before saving.');
-            }
-        
+      readUser();
 
-            var users = localStorage.getItem("tbl_user");
-            console.log(users);
-            if (users === undefined || users === null) {
-                users = [];
-            }
-            else {
-                users = JSON.parse(users);
-            }
-
-            const user = {
-                UserName: text,
-                UserEmail: userMail
-            };
-
-
-           
-            console.log(users);
-            // let users = [];
-            users.push(user);
-
-            console.log(users);
-
-            localStorage.setItem("tbl_user", JSON.stringify(users));
-          
-
-            $('#txtUserName').val('');
-            $('#txtUserName').focus();
-            $('#txtUserEmail').val('');
-            $('#txtUserEmail').focus();
-
-
-            readUser();
-          
-
-            // $('#tbTbody').html('');
-
-            // users = localStorage.getItem("tbl_user");
-            // users = JSON.parse(users);
-
-            // let htmlString = '';
-            // $.each(users, function (index, value) {
-            //     console.log(index + ": " + value.UserName);
-
-            //     htmlString += `
-            //                     <tr>
-            //                         <td>${index + 1}</td>
-            //                         <td>${value.UserName}</td>
-            //                     </tr>`
-            // });
-
-            // $('#tbTbody').html(htmlString);
-
-            // localStorage.setItem("Text", text);
-            // const val = localStorage.getItem('Text');
-            // console.log(val);
-
-            // localStorage.removeItem('Text');
-            // localStorage.clear();
-        })
-
-        function readUser() {
-            $('#tbTbody').html('');
-
-            var users = localStorage.getItem("tbl_user");
-            users = JSON.parse(users);
-
-            let htmlString = '';
-            $.each(users, function (index, value) {
-                console.log(index + ": " + value.UserName);
-                console.log(index + ": " + value.UserEmail);
-
-                htmlString += `
-                    <tr>
-                        <td>${index + 1}</td>
-                        <td>${value.UserName}</td>
-                        <td>${value.UserEmail}</td>
-                    </tr>`
-            });
-
-            $('#tbTbody').html(htmlString);
+      function getUsers() {
+        var users = localStorage.getItem("tbl_user");
+        if (users === undefined || users === null) {
+          users = [];
+        } else {
+          users = JSON.parse(users);
         }
-    </script>
-    </body>
+        return users;
+      }
 
+      $("#btnSave").click(function () {
+        Notiflix.Loading.standard();
+        setTimeout(() => {
+          if (text.trim() !== '' & Mail.trim() !== '') {
+           
+            Notiflix.Notify.success('Saving Success');
+          } else {
+              Notiflix.Notify.failure('Enter both Input');
+              return;
+          }
+          Notiflix.Loading.remove();
+
+        }, 1990);
+          const text = $("#txtUserName").val();
+         const Mail = $("#txtUserMail").val();
+
+
+         
+        if (_userId !== undefined && _userId !== null && _userId !== "") {
+          updateUser();
+        } else {
+          saveUser();
+        }
+      });
+
+      function saveUser() {
+        const text = $("#txtUserName").val();
+        const Mail = $("#txtUserMail").val();
+
+
+        var users = getUsers();
+
+        const user = {
+          UserId: uuidv4(),
+          UserName: text,
+          UserMail : Mail,
+        };
+        
+
+        users.push(user);
+
+        localStorage.setItem("tbl_user", JSON.stringify(users));
+        resetFormAndReadUser() ;
+      }
+
+      function updateUser() {
+        const text = $("#txtUserName").val();
+        const Mail = $("#txtUserMail").val();
+
+        var users = getUsers();
+
+        let userIndex = users.findIndex((x) => x.UserId == _userId);
+        console.log(userIndex);
+
+        users[userIndex].UserName = text;
+        users[userIndex].UserMail = Mail;
+
+
+        localStorage.setItem("tbl_user", JSON.stringify(users));
+
+        successMessage("Updating Successful!");
+
+        _userId = null;
+        resetFormAndReadUser();
+      }
+      function editUser(userId) {
+        let users = getUsers();
+        var user = users.filter((x) => x.UserId == userId)[0];
+        console.log(user);
+
+        if (user === undefined || user === null) {
+          warningMessage("No data found!");
+          return;
+        }
+
+        $("#txtUserName").val(user.UserName);
+        $("#txtUserMail").val(user.UserMail);
+        _userId = user.UserId;
+      }
+
+      $("#btnCancel").click(function () {
+        $("#txtUserName").val("");
+        $("#txtUserMail").val("");
+
+        _userId = null;
+        $("#txtUserName").focus();
+        $("#txtUserMail").focus();
+
+      });
+
+      function deleteUser(userId) {
+        console.log(userId);
+        confirmMessage("Are you sure want to delete?").then((result) => {
+          if (!result) return;
+
+          _userId = userId;
+
+          let users = getUsers();
+          let user = users.filter((x) => x.UserId == _userId)[0];
+
+          if (user === undefined || user === null) {
+            warningMessage("No data found!");
+            return;
+          }
+          users = users.filter((x) => x.UserId !== user.UserId);
+
+          localStorage.setItem("tbl_user", JSON.stringify(users));
+
+          successMessage("Deleting Successful!");
+
+          _userId = null;
+
+         resetFormAndReadUser() ;
+        });
+      }
+    </script>
+  </body>
 </html>
