@@ -1,0 +1,60 @@
+﻿@model MackDotNetCore.MvcApp.Models.BlogDataModel
+
+@{
+    ViewData["Title"] = "Edit Blog";
+}
+
+<h4>Edit Blog</h4>
+
+<div class="mb-3">
+    <label class="form-label">Title</label>
+    <input type="text" id="blog_title" class="form-control" value="@Model.blog_title">
+</div>
+<div class="mb-3">
+    <label class="form-label">Author</label>
+    <input type="text" id="blog_authour" class="form-control" value="@Model.blog_authour">
+</div>
+<div class="mb-3">
+    <label class="form-label">Content</label>
+    <input type="text" id="blog_content" class="form-control" value="@Model.blog_content">
+</div>
+<a href="/blogajax/list" class="btn btn-secondary">Cancel</a>
+<button type="button" class="btn btn-primary ladda-button" data-style="expand-left" id="btnUpdate" data-blog-id="@Model.blog_id">
+    <span class="ladda-label">Update</span>
+</button>
+
+@section scripts {
+    <script>
+        $('#btnUpdate').click(function (e) {
+            e.preventDefault();
+
+            var l = Ladda.create(this);
+            l.start();
+
+            var _reqModel = {
+                Blog_Id: $(this).data('blog-id'),
+                Blog_Title: $('#blog_title').val(),
+                Blog_Authour: $('#blog_authour').val(),
+                Blog_Content: $('#blog_content').val(),
+            };
+
+          
+
+            $.ajax({
+                url: '/blogajax/update',
+                type: 'POST',
+                data: {
+                    reqModel: _reqModel
+                },
+                success: function (data) {
+                    l.stop();
+                    showMessage(data, "/blogajax/list");
+                },
+                error: function (request, status, error) {
+                    console.log({ request, status, error });
+                }
+            });
+        })
+    </script>
+}
+

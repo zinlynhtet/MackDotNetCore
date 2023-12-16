@@ -1,9 +1,8 @@
-﻿@model List<BlogDataModel>
+﻿@model MackDotNetCore.MvcApp.Models.BlogDataResponseModel
 @{
     // Layout = "_MainLayout";
     // Layout = "_Layout";
     ViewData["Title"] = "Blog Index";
-    int count = 0;
     string? message = null;
     bool isSuccess = false;
     if (TempData["Message"] != null)
@@ -11,6 +10,13 @@
         message = TempData["Message"].ToString();
         isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
     }
+
+    int pageNo = Model.PageSetting.PageNo;
+    int pageSize = Model.PageSetting.PageSize;
+    int pageCount = Model.PageSetting.PageCount;
+    int count = (pageNo - 1) * pageCount;
+    string url = Model.PageSetting.PageUrl;
+
 }
 <h4>
     <a href="/blog/create" class="btn btn-success w-auto">
@@ -40,14 +46,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model)
+
+        @foreach (var item in Model.Blogs)
         {
             <tr>
                 <td>
-                    <a class="btn btn-warning" href="/blog/edit/@item.blog_id">
+                    <a class="btn btn-warning" href="/blogajax/edit/@item.blog_id">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </a>
-                    <a class="btn btn-danger" href="/blog/delete/@item.blog_id">
+                    <a class="btn btn-danger btnDelete" href="#" data-blog-id="@item.blog_id">
                         <i class="fa-solid fa-trash"></i>
                     </a>
                 </td>
@@ -59,9 +66,33 @@
         }
     </tbody>
 </table>
+@await Html.PartialAsync("_Pagination", Model.PageSetting)
 
 @section scripts {
     <script>
-        console.log('test');
+        $(".btnDelete").click(function () {
+            var _reqModel = {
+                Blog_Id: $(this).data('blog-id'),
+            };
+
+            confirmMessage("Are you sure want to delete?").then((result) => {
+                if (!result) return;
+
+                $.ajax({
+                    url: "/blogajax/delete",
+                    type: "POST",
+                    data:
+                    {
+                        reqModel: _reqModel
+                    },
+                    success: function (data) {
+                        showMessage(data, '/blogajax/list');
+                    },
+                    error: function (request, status, error) {
+                        console.log({ request, status, error });
+                    }
+                });
+            });
+        });
     </script>
 }
