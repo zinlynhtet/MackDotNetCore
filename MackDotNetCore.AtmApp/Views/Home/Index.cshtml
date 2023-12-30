@@ -1,9 +1,17 @@
-﻿@{
+﻿@model List<BlogDataModel>
+@{
     ViewData["Title"] = "Home Page";
+    string message = null;
+    bool isSuccess = false;
+    if (TempData["Message"] != null)
+    {
+        message = TempData["Message"].ToString();
+        isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+    }
 }
 
 <div class="text-center mt-5">
-   <h4>Welcome Form Mini ATM</h4>
+   <h4>Welcome From Mini ATM</h4>
    <p>Choose an option you would like to...</p>
 </div>
 <div class="text-center mt-5 d-flex justify-content-center align-items-center">
@@ -11,6 +19,16 @@
         <a href="/blog/create" class="btn-success text-decoration-none border-1 rounded-2 fs-6 p-3"> Register </a>
         <a href="/blog/withdraw" class="btn-success text-decoration-none border-1 rounded-2 fs-6 p-3"> Withdraw </a>
         <a href="/blog/deposit" class="btn-success text-decoration-none border-1 rounded-2 fs-6 p-3"> Deposit </a>
-        <a href="/blog/checkbalance" class="btn-success text-decoration-none border-1 rounded-2 fs-6 p-3"> CheckBalance </a>
+        <a href="/blog/check" class="btn-success text-decoration-none border-1 rounded-2 fs-6 p-3"> CheckBalance </a>
    </div>
+</div>
+<div class="mt-5">
+
+    @if (message != null)
+    {
+        <div class="alert alert-@(isSuccess ? "success" : "danger")" role="alert">
+            @message
+        </div>
+    }
+
 </div>

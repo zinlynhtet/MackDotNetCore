@@ -2,8 +2,23 @@
 @{
 	ViewData["Title"] = "Blog Index";
 	int count = 0;
+	string message = null;
+	bool isSuccess = false;
+	if(TempData["Message"] != null)
+	{
+		message = TempData["Message"].ToString();
+		isSuccess = Convert.ToBoolean(TempData["IsSuccess"]);
+	}
 }
 <h4>User Lists </h4>
+@if(message != null)
+{
+	<div class="alert alert-@(isSuccess ? "success" : "danger")" role="alert">
+		@message
+	</div>
+}
+
+
 <table class="table">
 	<thead>
 		<tr>
