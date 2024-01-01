@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MackDotNetCore.AtmApp.Controllers
 {
-    public class BlogController : Controller
+    public class ATMController : Controller
     {
         private readonly AppDbContext _context;
 
-        public BlogController(AppDbContext context)
+        public ATMController(AppDbContext context)
         {
             _context = context;
         }
