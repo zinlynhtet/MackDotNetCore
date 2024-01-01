@@ -25,6 +25,7 @@ namespace MackDotNetCore.AtmApp.Controllers
         {
             return View("BlogCreate");
         }
+
         [HttpPost]
         [ActionName("Save")]
         public async Task<IActionResult> BlogSave(BlogDataModel reqModel)
@@ -37,6 +38,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 
             return Redirect("/blog");
         }
+
         [ActionName("Withdraw")]
         public IActionResult BlogWithdraw()
         {
