@@ -15,6 +15,8 @@ namespace MackDotNetCore.AtmApp.Controllers
 
         public IActionResult Index()
         {
+			var str = HttpContext.Session.GetString("LoginData");
+            if (str == null) return Redirect("/login");
             return View();
         }
 
