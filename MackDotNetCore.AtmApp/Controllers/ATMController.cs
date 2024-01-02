@@ -36,7 +36,7 @@ namespace MackDotNetCore.AtmApp.Controllers
             TempData["Message"] = message;
             TempData["IsSuccess"] = result > 0;
 
-            return Redirect("/blog");
+            return Redirect("/atm");
         }
 
         [ActionName("Withdraw")]
