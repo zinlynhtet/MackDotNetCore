@@ -7,7 +7,7 @@ namespace MackDotNetCore.MvcApp.Controllers
         [ActionName("Index")]
         public IActionResult UserIndex()
         {
-            return View("UserIndex");
+            return;
         }
     }
 }
