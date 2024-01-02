@@ -15,20 +15,20 @@ namespace MackDotNetCore.AtmApp.Controllers
         }
         //get
         [ActionName("Index")]
-        public IActionResult BlogIndex()
+        public IActionResult ATMIndex()
         {
             List<BlogDataModel> lst = _context.Blogs.ToList();
-            return View("BlogIndex", lst);
+            return View("ATMIndex", lst);
         }
         [ActionName("Create")]
-        public IActionResult BlogCreate()
+        public IActionResult ATMCreate()
         {
-            return View("BlogCreate");
+            return View("ATMCreate");
         }
 
         [HttpPost]
         [ActionName("Save")]
-        public async Task<IActionResult> BlogSave(BlogDataModel reqModel)
+        public async Task<IActionResult> ATMSave(BlogDataModel reqModel)
         {
             await _context.Blogs.AddAsync(reqModel);
             var result = await _context.SaveChangesAsync();
@@ -40,14 +40,14 @@ namespace MackDotNetCore.AtmApp.Controllers
         }
 
         [ActionName("Withdraw")]
-        public IActionResult BlogWithdraw()
+        public IActionResult ATMWithdraw()
         {
-            return View("BlogWithdraw");
+            return View("ATMWithdraw");
         }
     
         [HttpPost]
         [ActionName("Withdraw")]
-        public async Task<IActionResult> BlogWithdraw(BlogDataModel reqModel)
+        public async Task<IActionResult> ATMWithdraw(BlogDataModel reqModel)
         {
             var blog = await _context.Blogs
                 .FirstOrDefaultAsync(b => b.CardNum == reqModel.CardNum && b.Pin == reqModel.Pin);
@@ -57,7 +57,7 @@ namespace MackDotNetCore.AtmApp.Controllers
                 TempData["Message"] = "Withdrawal failed. Invalid data or insufficient balance.";
                 TempData["IsSuccess"] = false;
 
-                return View("BlogWithdraw");
+                return View("ATMWithdraw");
             }
 
             blog.Balance -= reqModel.Balance;
@@ -71,13 +71,13 @@ namespace MackDotNetCore.AtmApp.Controllers
             return Redirect("/home");
         }
         [ActionName("Deposit")]
-        public IActionResult BlogDeposit()
+        public IActionResult ATMDeposit()
         {
-            return View("BlogDeposit");
+            return View("ATMDeposit");
         }
         [HttpPost]
         [ActionName("Deposit")]
-        public async Task<IActionResult> BlogDeposit(BlogDataModel reqModel)
+        public async Task<IActionResult> ATMDeposit(BlogDataModel reqModel)
         {
             var blog = await _context.Blogs
                 .FirstOrDefaultAsync(b => b.CardNum == reqModel.CardNum && b.Pin == reqModel.Pin);
@@ -101,21 +101,21 @@ namespace MackDotNetCore.AtmApp.Controllers
             return Redirect("/home");
         }
         [ActionName("Check")]
-        public IActionResult BlogCheck()
+        public IActionResult ATMCheck()
         {
-            return View("BlogCheck");
+            return View("ATMCheck");
         }
         [HttpGet]
         [ActionName("Check")]
-        public async Task<IActionResult> BlogCheck(BlogDataModel reqModel)
+        public async Task<IActionResult> ATMCheck(BlogDataModel reqModel)
         {
             var blog = await _context.Blogs
                 .FirstOrDefaultAsync(b => b.CardNum == reqModel.CardNum && b.Pin == reqModel.Pin);
             if (blog != null)
             {
-                return View("BlogCheckResult", blog);
+                return View("ATMCheckResult", blog);
             }
-            return View("BlogCheck");
+            return View("ATMCheck");
         }
     }
 }
