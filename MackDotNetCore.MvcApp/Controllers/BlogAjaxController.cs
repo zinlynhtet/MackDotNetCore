@@ -34,11 +34,13 @@ namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
             return View("BlogList", model);
         }
 
+
         [ActionName("Create")]
         public IActionResult BlogCreate()
         {
             return View("BlogCreate");
         }
+
 
         [HttpPost]
         [ActionName("Save")]
@@ -53,6 +55,7 @@ namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
             MessageModel model = new MessageModel(result > 0, message);
             return Json(model);
         }
+
 
         [HttpGet]
         [ActionName("Edit")]

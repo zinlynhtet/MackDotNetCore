@@ -20,6 +20,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 			List<BlogDataModel> lst = _context.Blogs.ToList();
 			return View("ATMIndex", lst);
 		}
+
 		[ActionName("Create")]
 		public IActionResult ATMCreate()
 		{
@@ -75,6 +76,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 		{
 			return View("ATMDeposit");
 		}
+
 		[HttpPost]
 		[ActionName("Deposit")]
 		public async Task<IActionResult> ATMDeposit(BlogDataModel reqModel)
@@ -100,6 +102,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 			TempData["IsSuccess"] = result > 0;
 			return Redirect("/home");
 		}
+
 		[ActionName("Check")]
 		public IActionResult ATMCheck()
 		{

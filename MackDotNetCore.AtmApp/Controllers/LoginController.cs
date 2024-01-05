@@ -23,12 +23,8 @@ namespace MackDotNetCore.AtmApp.Controllers
 		[HttpPost]
 		public async Task<IActionResult> IndexAsync(BlogDataModel reqModel)
 		{
-			
-		
-
 			var blog = await _context.Blogs
 				.FirstOrDefaultAsync(b => b.CardNum == reqModel.CardNum && b.Pin == reqModel.Pin);
-
 			if (blog == null)
 			{
 				return RedirectToAction("Index");

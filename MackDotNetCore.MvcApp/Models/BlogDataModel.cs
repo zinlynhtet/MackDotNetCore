@@ -18,6 +18,7 @@ namespace MackDotNetCore.MvcApp.Models
         public string? blog_authour { get; set; }
         public string? blog_content { get; set; }
     }
+
     public class BlogDataResponseModel
     {
         public PageSettingModel PageSetting { get; set; }

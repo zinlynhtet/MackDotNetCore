@@ -1,6 +1,7 @@
 ﻿using MackDotNetCore.MvcApp.EFDbContext;
 using MackDotNetCore.MvcApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace MackDotNetCore.MvcApp.Controllers
@@ -23,6 +24,7 @@ namespace MackDotNetCore.MvcApp.Controllers
             return View("BlogIndex", lst);
             //return Redirect("/blog/create");
         }
+        [HttpGet]
         [ActionName("List")]
         public async Task<IActionResult> BlogList(int pageNo = 1, int pageSize = 10)
         {
@@ -67,6 +69,8 @@ namespace MackDotNetCore.MvcApp.Controllers
 
             return Redirect("/blog");
         }
+
+        [HttpPost]
         [ActionName("Edit")]
         public async Task<IActionResult> BlogEdit(int id)
         {
@@ -87,7 +91,6 @@ namespace MackDotNetCore.MvcApp.Controllers
 
             return View("BlogEdit", blog);
         }
-
 
         [HttpPost]
         [ActionName("Update")]
@@ -119,6 +122,8 @@ namespace MackDotNetCore.MvcApp.Controllers
 
             return Redirect("/blog");
         }
+
+        [HttpPost]
         [ActionName("Delete")]
         public async Task<IActionResult> BlogDelete(int id)
         {
