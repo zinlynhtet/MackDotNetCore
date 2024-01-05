@@ -63,6 +63,7 @@ namespace MackDotNetCore.RestApi.Controllers
             return Ok(model);
         }
 
+
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
@@ -107,6 +108,7 @@ namespace MackDotNetCore.RestApi.Controllers
             return Ok(model);
         }
 
+
         [HttpPost]
         public IActionResult CreateBlog(BlogDataModel blog)
         {
@@ -134,6 +136,7 @@ namespace MackDotNetCore.RestApi.Controllers
             };
             return Ok(model);
         }
+
 
         [HttpPut("{id}")]
         public IActionResult UpdateBlog(int id, BlogDataModel blog)
@@ -167,6 +170,7 @@ namespace MackDotNetCore.RestApi.Controllers
             };
             return Ok(model);
         }
+
 
         [HttpPatch("{id}")]
         public IActionResult PatchBlog(int id, BlogDataModel blog)
@@ -238,6 +242,7 @@ namespace MackDotNetCore.RestApi.Controllers
             };
             return Ok(model);
         }
+
 
         [HttpDelete("{id}")]
         public IActionResult DeleteBlog(int id)

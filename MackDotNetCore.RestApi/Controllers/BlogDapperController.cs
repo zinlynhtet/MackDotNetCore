@@ -38,7 +38,6 @@ namespace MackDotNetCore.RestApi.Controllers
             return Ok(model);
         }
 
-
         [HttpGet("{id}")]
         public IActionResult GetBlog(int id)
         {
