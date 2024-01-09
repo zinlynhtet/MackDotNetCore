@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 {
@@ -12,9 +13,11 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 	{
 		public async Task Run()
 		{
-			//await Read();
-			await Edit(11);
-			await Edit(12);
+			await Read();
+			//await Edit(11);
+			//await Edit(12);
+			//await Create("test 8.50", "test 2", "HTTP CLIENT");
+
 		}
 		public async Task Read()
 		{
@@ -54,9 +57,27 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				Console.WriteLine(model!);
             }
 		}
-		public async Task Create()
+		public async Task Create(string title, string authour, string content)
 		{
 
+			BlogDataModel blog = new BlogDataModel
+			{
+				blog_title = title,
+				blog_authour = authour,
+				blog_content = content
+			};
+
+			string jsonBlog = JsonConvert.SerializeObject(blog);
+			HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
+
+			HttpClient client = new HttpClient();
+			HttpResponseMessage response = await client.PostAsync("http://localhost:5095/api/blog", httpContent);
+			if (response.IsSuccessStatusCode)
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+				await Console.Out.WriteLineAsync(model!.Message);
+			}
 		}
 		public async Task Update()
 		{
