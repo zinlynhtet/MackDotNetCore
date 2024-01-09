@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Net.Mime.MediaTypeNames;
@@ -17,6 +18,8 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 			//await Edit(11);
 			//await Edit(12);
 			//await Create("test 8.50", "test 2", "HTTP CLIENT");
+			//await Update(12, "test", "test", "HttpClient");
+			//await Delete(11);
 
 		}
 		public async Task Read()
@@ -79,13 +82,51 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				await Console.Out.WriteLineAsync(model!.Message);
 			}
 		}
-		public async Task Update()
+		public async Task Update(int id, string title, string authour, string content)
 		{
+			BlogDataModel blog = new BlogDataModel
+			{
+				blog_title = title,
+				blog_authour = authour,
+				blog_content = content
+			};
 
+			string jsonBlog = JsonConvert.SerializeObject(blog);
+			HttpContent httpContent = new StringContent(jsonBlog, Encoding.UTF8, Application.Json);
+
+			HttpClient client = new HttpClient();
+			HttpResponseMessage response = await client.PutAsync($"http://localhost:5095/api/blog/{id}", httpContent);
+			if (response.IsSuccessStatusCode)
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+				await Console.Out.WriteLineAsync(model.Message);
+			}
+			else
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+				Console.WriteLine(model.Message);
+			}
 		}
-		public async Task Delete()
+		public async Task Delete(int id)
 		{
 
+			HttpClient client = new HttpClient();
+			HttpResponseMessage response = await client.DeleteAsync($"http://localhost:5095/api/blog/{id}");
+			if (response.IsSuccessStatusCode)
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr);
+				Console.WriteLine(model);
+			}
+			else
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr);
+				Console.WriteLine(model);
+			}
 		}
 	}
 }
+
