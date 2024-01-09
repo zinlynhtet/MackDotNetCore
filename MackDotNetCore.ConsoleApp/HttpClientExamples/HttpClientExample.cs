@@ -13,16 +13,18 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 		public async Task Run()
 		{
 			await Read();
+			await Edit(11);
+			await Edit(12);
 		}
 		public async Task Read()
 		{
 			HttpClient client = new HttpClient();
-			HttpResponseMessage response =  await client.GetAsync("http://localhost:5095/api/blog");
+			HttpResponseMessage response = await client.GetAsync("http://localhost:5095/api/blog");
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = await response.Content.ReadAsStringAsync();
 				var model = JsonConvert.DeserializeObject<BlogListResponseModel>(jsonStr);
-				foreach ( var item in model.Data)
+				foreach (var item in model!.Data)
 				{
 					Console.WriteLine(item.blog_id);
 					Console.WriteLine(item.blog_title);
@@ -31,9 +33,26 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				}
 			}
 		}
-		public async Task Edit()
+		public async Task Edit(int id)
 		{
-
+			HttpClient client = new HttpClient();
+			HttpResponseMessage response = await client.GetAsync($"http://localhost:5095/api/blog/{id}");
+			if (response.IsSuccessStatusCode)
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				BlogDataModel? model = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr);
+				var item = model!;
+				Console.WriteLine(item.blog_id);
+				Console.WriteLine(item.blog_title);
+				Console.WriteLine(item.blog_authour);
+				Console.WriteLine(item.blog_content);
+			}
+			else
+			{
+				string jsonStr = await response.Content.ReadAsStringAsync();
+				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
+				Console.WriteLine(model!.Message);
+            }
 		}
 		public async Task Create()
 		{
