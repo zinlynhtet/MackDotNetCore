@@ -12,7 +12,7 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 	{
 		public async Task Run()
 		{
-			await Read();
+			//await Read();
 			await Edit(11);
 			await Edit(12);
 		}
@@ -50,8 +50,8 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 			else
 			{
 				string jsonStr = await response.Content.ReadAsStringAsync();
-				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
-				Console.WriteLine(model!.Message);
+				var model = JsonConvert.DeserializeObject<BlogDataModel>(jsonStr);
+				Console.WriteLine(model!);
             }
 		}
 		public async Task Create()
