@@ -1,5 +1,6 @@
 ﻿using MackDotNetCore.ConsoleApp.Model;
 using Newtonsoft.Json;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace MackDotNetCore.ConsoleApp.RestClientExamples
 		{
 			RestRequest request = new RestRequest("http://localhost:5095/api/blog/", Method.Get);
 			RestClient client = new RestClient();
-			var response = await client.ExcuteAsync(request);
+			var response = await client.ExecuteAsync(request);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr =  response.Content!;
@@ -45,7 +46,7 @@ namespace MackDotNetCore.ConsoleApp.RestClientExamples
 		{
 			RestRequest request = new RestRequest($"http://localhost:5095/api/blog/{id}", Method.Get);
 			RestClient client = new RestClient();
-			var response = await client.ExcuteAsync(request);
+			var response = await client.ExecuteAsync(request);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr =  response.Content!;
@@ -77,7 +78,7 @@ namespace MackDotNetCore.ConsoleApp.RestClientExamples
 			RestRequest request = new RestRequest("http://localhost:5095/api/blog/", Method.Post);
 			request.AddJsonBody(blog);
 			RestClient client = new RestClient();
-			var response = await client.ExcuteAsync(request);
+			var response = await client.ExecuteAsync(request);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = response.Content!;
@@ -98,7 +99,7 @@ namespace MackDotNetCore.ConsoleApp.RestClientExamples
 			RestRequest request = new RestRequest($"http://localhost:5095/api/blog/{id}", Method.Put);
 			request.AddJsonBody(blog);
 			RestClient client = new RestClient();
-			var response = await client.ExcuteAsync(request);
+			var response = await client.ExecuteAsync(request);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = response.Content!;
@@ -118,7 +119,7 @@ namespace MackDotNetCore.ConsoleApp.RestClientExamples
 
 			RestRequest request = new RestRequest($"http://localhost:5095/api/blog/{id}", Method.Delete);
 			RestClient client = new RestClient();
-			var response = await client.ExcuteAsync(request);
+			var response = await client.ExecuteAsync(request);
 			if (response.IsSuccessStatusCode)
 			{
 				string jsonStr = response.Content!;

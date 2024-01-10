@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
@@ -13,6 +13,7 @@
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.14" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.14" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
+		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
