@@ -12,5 +12,18 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 	{
 		[Get("/api/blog")]
 		Task<BlogListResponseModel> GetBlogLists();
+
+		[Get("/api/blog/{id}")]
+		Task<BlogDataModel> GetBlogList(int id);
+
+		[Post("/api/blog")]
+		Task<BlogResponseModel> CreateBlogList(BlogDataModel blog);
+
+		[Put("/api/blog/{id}")]
+		Task<BlogResponseModel> UpdateBlogList(BlogDataModel blog);
+
+
+		[Delete("/api/blog/{id}")]
+		Task<BlogResponseModel> DeleteBlogList(int id);
 	}
 }
