@@ -10,18 +10,19 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 {
-	internal class HttpClientExample
+	public class HttpClientExample
 	{
 		public async Task Run()
 		{
-			await Read();
+			//await Read();
 			//await Edit(11);
 			//await Edit(12);
 			//await Create("test 8.50", "test 2", "HTTP CLIENT");
-			await Update(13, "Client", "Client", "Client");
+			//await Update(13, "Client", "Client", "Client");
 			//await Delete(12);
 
 		}
+
 		public async Task Read()
 		{
 			HttpClient client = new HttpClient();
@@ -39,6 +40,7 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				}
 			}
 		}
+
 		public async Task Edit(int id)
 		{
 			HttpClient client = new HttpClient();
@@ -58,8 +60,9 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				string jsonStr = await response.Content.ReadAsStringAsync();
 				var model = JsonConvert.DeserializeObject<BlogResponseModel>(jsonStr);
 				Console.WriteLine(model!.Message);
-            }
+			}
 		}
+
 		public async Task Create(string title, string authour, string content)
 		{
 
@@ -82,6 +85,7 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				await Console.Out.WriteLineAsync(model!.Message);
 			}
 		}
+
 		public async Task Update(int id, string title, string authour, string content)
 		{
 			BlogDataModel blog = new BlogDataModel
@@ -109,6 +113,7 @@ namespace MackDotNetCore.ConsoleApp.HttpClientExamples
 				Console.WriteLine(model!.Message);
 			}
 		}
+
 		public async Task Delete(int id)
 		{
 
