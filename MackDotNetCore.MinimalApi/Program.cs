@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Mvc;
 using MackDotNetCore.MinimalApi;
 using Microsoft.EntityFrameworkCore;
 
@@ -12,8 +11,11 @@ builder.Services.AddSwaggerGen();
 // Configure the database context
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
-	options.UseSqlServer(builder.Configuration.GetConnectionString("DbConnection"));
-});
+	string? connectionString = builder.Configuration.GetConnectionString("DbConnection");
+	options.UseSqlServer(connectionString);
+},
+ServiceLifetime.Transient,
+ServiceLifetime.Transient);
 
 var app = builder.Build();
 
@@ -33,13 +35,5 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/blog/{id}", async ([FromServices] AppDbContext db, int id) =>
-{
-	var blog = await db.Blogs.AsNoTracking().FirstOrDefaultAsync(b => b.blog_id == id);
-	return Results.Ok(blog);
-})
-.WithName("GetBlogs")
-.WithOpenApi();
-
+app.AddBlogService();
 app.Run();
