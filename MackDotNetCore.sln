@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.AtmApp", "Ma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.ThemeMvcApp", "MackDotNetCore.ThemeMvcApp\MackDotNetCore.ThemeMvcApp.csproj", "{59D59421-CA9D-48F6-B1C7-9EA282C6856E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.SessionWebApp", "MackDotNetCore.SessionWebApp\MackDotNetCore.SessionWebApp.csproj", "{AC6E4A1B-854D-4C37-A1DD-2211256ED12B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.SessionWebApp", "MackDotNetCore.SessionWebApp\MackDotNetCore.SessionWebApp.csproj", "{AC6E4A1B-854D-4C37-A1DD-2211256ED12B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.MinimalApi", "MackDotNetCore.MinimalApi\MackDotNetCore.MinimalApi.csproj", "{BA8D053D-EC4D-4BF6-BF86-CBF50DE3FC4A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{AC6E4A1B-854D-4C37-A1DD-2211256ED12B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC6E4A1B-854D-4C37-A1DD-2211256ED12B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC6E4A1B-854D-4C37-A1DD-2211256ED12B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA8D053D-EC4D-4BF6-BF86-CBF50DE3FC4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA8D053D-EC4D-4BF6-BF86-CBF50DE3FC4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA8D053D-EC4D-4BF6-BF86-CBF50DE3FC4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA8D053D-EC4D-4BF6-BF86-CBF50DE3FC4A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
