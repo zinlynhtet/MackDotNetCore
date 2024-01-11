@@ -1,10 +1,12 @@
 ﻿using MackDotNetCore.ConsoleApp.Model;
+using MackDotNetCore.MvcApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BlogDataModel = MackDotNetCore.ConsoleApp.Model.BlogDataModel;
 
 namespace MackDotNetCore.ConsoleApp.RefitExamples
 {
@@ -13,17 +15,17 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		[Get("/api/blog")]
 		Task<BlogListResponseModel> GetBlogLists();
 
-		//[Get("/api/blog/{id}")]
-		//Task<BlogDataModel> GetBlogList(int id);
+		[Get("/api/blog/{id}")]
+		Task<BlogDataModel> Getbloglist(int id);
 
-		//[Post("/api/blog")]
-		//Task<BlogResponseModel> CreateBlogList(BlogDataModel blog);
+		[Post("/api/blog")]
+		Task<BlogResponseModel> CreateBlogList(BlogDataModel blog);
 
-		//[Put("/api/blog/{id}")]
-		//Task<BlogResponseModel> UpdateBlogList(BlogDataModel blog);
+		[Put("/api/blog/{id}")]
+		Task<BlogResponseModel> UpdateBlogList(BlogDataModel blog);
 
 
-		//[Delete("/api/blog/{id}")]
-		//Task<BlogResponseModel> DeleteBlogList(int id);
+		[Delete("/api/blog/{id}")]
+		Task<BlogResponseModel> DeleteBlogList(int id);
 	}
 }
