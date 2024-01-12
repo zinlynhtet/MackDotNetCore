@@ -1,0 +1,35 @@
+﻿@model BlogListResponseModel
+@{
+    int count = 0;
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col">#</th>
+            <th scope="col">Title</th>
+            <th scope="col">Author</th>
+            <th scope="col">Content</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.Data)
+        {
+            <tr>
+                <td>
+                    <a class="btn btn-warning" href="/blog/edit/@item.blog_id">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </a>
+                    <a class="btn btn-danger" href="/blog/delete/@item.blog_id">
+                        <i class="fa-solid fa-trash"></i>
+                    </a>
+                </td>
+                <th scope="row">@(++count)</th>
+                <td>@item.blog_title</td>
+                <td>@item.blog_authour</td>
+                <td>@item.blog_content</td>
+            </tr>
+        }
+    </tbody>
+</table>
