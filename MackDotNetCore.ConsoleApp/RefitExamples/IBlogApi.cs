@@ -22,10 +22,9 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		Task<BlogResponseModel> CreateBlogList(BlogDataModel blog);
 
 		[Put("/api/blog/{id}")]
-		Task<BlogResponseModel> UpdateBlogList(BlogDataModel blog);
-
+		Task<BlogResponseModel> UpdateBlogList(int id, BlogDataModel blog);
 
 		[Delete("/api/blog/{id}")]
-		Task<BlogResponseModel> DeleteBlogList(int id);
+		Task<BlogResponseModel> DeleteBlog(int id);
 	}
 }
