@@ -1,12 +1,19 @@
 using MackDotNetCore.MinimalApi;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+	options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
+	options.SerializerOptions.PropertyNamingPolicy = new UpperCaseNamingPolicy(); 
+});
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -27,3 +34,16 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.AddBlogService();
 app.Run();
+
+public class UpperCaseNamingPolicy : JsonNamingPolicy
+{
+	public override string ConvertName(string name)
+	{
+		if (string.IsNullOrEmpty(name))
+			return name;
+
+		char[] chars = name.ToCharArray();
+		chars[0] = char.ToUpper(chars[0]);
+		return new string(chars);
+	}
+}
