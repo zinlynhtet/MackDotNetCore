@@ -41,7 +41,7 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		private async Task Edit(int id)
 		{
 			var model = await blogApi.Getbloglist(id);
-			var item = model;
+			var item = model.Data;
 			Console.WriteLine(item.blog_id);
 			Console.WriteLine(item.blog_title);
 			Console.WriteLine(item.blog_authour);

@@ -1,5 +1,4 @@
 ﻿using MackDotNetCore.ConsoleApp.Model;
-using MackDotNetCore.MvcApp.Models;
 using Refit;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,7 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		Task<BlogListResponseModel> GetBlogLists();
 
 		[Get("/api/blog/{id}")]
-		Task<BlogDataModel> Getbloglist(int id);
+		Task<BlogResponseModel> Getbloglist(int id);
 
 		[Post("/api/blog")]
 		Task<BlogResponseModel> CreateBlogList(BlogDataModel blog);
