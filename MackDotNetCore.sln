@@ -8,6 +8,9 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.RestApi", "MackDotNetCore.RestApi\MackDotNetCore.RestApi.csproj", "{0BE7E6FB-3793-4464-9CE4-C23E0527CE44}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.MvcApp", "MackDotNetCore.MvcApp\MackDotNetCore.MvcApp.csproj", "{E11C49F2-BA3E-4B89-9594-42E9B8FB1EC5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BE7E6FB-3793-4464-9CE4-C23E0527CE44} = {0BE7E6FB-3793-4464-9CE4-C23E0527CE44}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.ATMConsoleApp", "MackDotNetCore.ATMConsoleApp\MackDotNetCore.ATMConsoleApp.csproj", "{FAC3F57F-C81E-407F-9802-DA60E5C48F63}"
 EndProject
