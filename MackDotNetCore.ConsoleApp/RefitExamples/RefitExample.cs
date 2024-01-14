@@ -14,7 +14,7 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		public async Task Run()
 		{
 			await Read();
-			//await Edit(14);
+			await Edit(22);
 			//await Create("Hello", "this", "isRefit");
 			//await Update(17, "this", "is", "updateRefit");
 			//await Delete(50);
@@ -41,11 +41,18 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 		private async Task Edit(int id)
 		{
 			var model = await blogApi.Getbloglist(id);
-			var item = model.Data;
-			Console.WriteLine(item.blog_id);
-			Console.WriteLine(item.blog_title);
-			Console.WriteLine(item.blog_authour);
-			Console.WriteLine(item.blog_content);
+			if (model != null)
+			{
+				var item = model;
+				Console.WriteLine(item.blog_id);
+				Console.WriteLine(item.blog_title);
+				Console.WriteLine(item.blog_authour);
+				Console.WriteLine(item.blog_content);
+			}
+			else
+			{
+				Console.WriteLine("No data returned from the server.");
+			}
 		}
 		private async Task Create(string title, string authour, string content)
 		{
@@ -78,8 +85,8 @@ namespace MackDotNetCore.ConsoleApp.RefitExamples
 			var result = await blogApi.DeleteBlog(id);
 			if (result != null)
 			{
-                await Console.Out.WriteLineAsync("Deleting successful.");
-            }
+				await Console.Out.WriteLineAsync("Deleting successful.");
+			}
 			else
 			{
 				await Console.Out.WriteLineAsync("Deleting Failed.");
