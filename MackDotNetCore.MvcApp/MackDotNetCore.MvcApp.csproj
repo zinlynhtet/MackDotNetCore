@@ -13,7 +13,7 @@
 		<PackageReference Include="RestSharp" Version="110.2.0" />
 		<PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
 		<PackageReference Include="Dapper" Version="2.1.24" />
-
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	</ItemGroup>
 
 </Project>

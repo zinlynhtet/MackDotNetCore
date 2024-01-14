@@ -1,0 +1,19 @@
+﻿@model BlogDataModel 
+
+<form action="/bloghttpclient/update?id=@Model.blog_id" method="post">
+	<div class="mb-3">
+		<label class="form-label">Title</label>
+		<input type="text" name="blog_title" value="@Model.blog_title" class="form-control">
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Author</label>
+		<input type="text" name="blog_authour" value="@Model.blog_authour" class="form-control">
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Content</label>
+		<input type="text" name="blog_content" value="@Model.blog_content" class="form-control">
+	</div>
+	<a href="/bloghttpclient" class="btn btn-secondary">Cancel</a>
+	<button type="submit" class="btn btn-success">Update</button>
+</form>
+
