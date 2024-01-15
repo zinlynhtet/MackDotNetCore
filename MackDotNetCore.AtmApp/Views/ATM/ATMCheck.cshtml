@@ -1,13 +1,17 @@
 ﻿<form action="/atm/check" method="get">
 
-	<div class="mb-3">
-		<label class="form-label w-50">CardNumber</label>
-		<input type="text" name="CardNum" class="form-control">
+	<div class="container-fluid bg-dark shadow d-flex justify-content-start">
+		<div class="p-3">
+			<div class="mb-3">
+				<label class="form-label text-white-50">CardNumber</label>
+				<input type="text" name="CardNum" class="form-control">
+			</div>
+			<div class="mb-3">
+				<label class="form-label  text-white-50 ">PinNumber</label>
+				<input type="text" name="Pin" class="form-control">
+			</div>
+			<a href="/home" type="button" class="btn btn-secondary">Cancel</a>
+			<button type="submit" class="btn btn-success">Check Balance</button>
+		</div>
 	</div>
-	<div class="mb-3">
-		<label class="form-label w-50">PinNumber</label>
-		<input type="text" name="Pin" class="form-control">
-	</div>
-	<a href="/home" type="button" class="btn btn-secondary">Cancel</a>
-	<button type="submit" class="btn btn-success">Check Balance</button>
 </form>
