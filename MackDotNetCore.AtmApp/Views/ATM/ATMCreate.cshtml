@@ -1,25 +1,31 @@
 ﻿<form action="/atm/save" method="post"> 
 	
-	<div class="mb-3">
-		<label class="form-label">CardNumber</label>
-		<input type="text" name="CardNum" class="form-control">
-	</div>  
-	<div class="mb-3">
-		<label class="form-label">PinNumber</label>
-		<input type="text" name="Pin" class="form-control">
-	</div>  
-	<div class="mb-3">
-		<label class="form-label">FirstName</label>
-		<input type="text" name="FirstName" class="form-control">
-	</div>  
-	<div class="mb-3">
-		<label class="form-label">LastName</label>
-		<input type="text" name="LastName" class="form-control">
+	<div class=" container-fluid d-flex justify-content-start shadow bg-dark ">
+		<div class=" p-5">
+			<div class="mb-3">
+				<label class="form-label text-white-50 fw-bold">CardNumber</label>
+				<input type="text" name="CardNum" class="form-control w-full">
+			</div>
+			<div class="mb-3">
+				<label class="form-label text-white-50 fw-bold">PinNumber</label>
+				<input type="text" name="Pin" class="form-control  w-full">
+			</div>
+			<div class="mb-3">
+				<label class="form-label text-white-50 fw-bold">FirstName</label>
+				<input type="text" name="FirstName" class="form-control w-full">
+			</div>
+			<div class="mb-3">
+				<label class="form-label text-white-50 fw-bold">LastName</label>
+				<input type="text" name="LastName" class="form-control w-full">
+			</div>
+			<div class="mb-3">
+				<label class="form-label text-white-50 fw-bold">Balance</label>
+				<input type="text" name="Balance" class="form-control w-full">
+			</div>
+			<a href="/home" type="button" class="btn btn-secondary">Cancel</a>
+			<button type="submit" class="btn btn-success">Save</button>
+		</div>
+		
 	</div>
-	<div class="mb-3">
-		<label class="form-label">Balance</label>
-		<input type="text" name="Balance" class="form-control">
-	</div>
-	<a href="/home" type="button" class="btn btn-secondary">Cancel</a>
-	<button type="submit" class="btn btn-success">Save</button>
+	
 </form>
