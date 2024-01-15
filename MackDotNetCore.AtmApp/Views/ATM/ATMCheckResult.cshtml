@@ -4,9 +4,13 @@
 
 @if (Model != null)
 {
-    <p>UserName: @Model.FirstName</p>
-    <p>Card Number: @Model.CardNum</p>
-    <p>Balance: @Model.Balance $</p>
+   <div class="bg-black w-50">
+       <div class="p-3">
+            <p class="text-white">UserName: @Model.FirstName</p>
+            <p class="text-white">Card Number: @Model.CardNum</p>
+            <p class="text-white">Balance: @Model.Balance $</p>
+       </div>
+   </div>
 }
 else
 {
