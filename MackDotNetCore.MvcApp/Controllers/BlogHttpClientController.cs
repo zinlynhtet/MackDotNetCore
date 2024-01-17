@@ -30,7 +30,7 @@ namespace MackDotNetCore.MvcApp.Controllers
 		}
 
 		[ActionName("Create")]
-		public async Task<IActionResult> BlogCreate()
+		public IActionResult BlogCreate()
 		{
 			return View("BlogCreate");
 		}
