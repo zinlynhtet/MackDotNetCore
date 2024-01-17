@@ -7,18 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="assets\image\1.png" />
-    <Content Include="assets\image\2.png" />
-    <Content Include="assets\image\3.png" />
-    <Content Include="assets\image\4.png" />
-    <Content Include="assets\image\5.png" />
-    <Content Include="assets\image\6.png" />
-    <Content Include="assets\image\7.png" />
-    <Content Include="assets\image\8.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\css\" />
+    <None Include="wwwroot\assets\image\1.png" />
+    <None Include="wwwroot\assets\image\2.png" />
+    <None Include="wwwroot\assets\image\3.png" />
+    <None Include="wwwroot\assets\image\4.png" />
+    <None Include="wwwroot\assets\image\5.png" />
+    <None Include="wwwroot\assets\image\6.png" />
+    <None Include="wwwroot\assets\image\7.png" />
+    <None Include="wwwroot\assets\image\8.png" />
   </ItemGroup>
 
 </Project>
