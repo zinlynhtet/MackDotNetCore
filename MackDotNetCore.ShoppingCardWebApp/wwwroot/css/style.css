@@ -2,13 +2,16 @@ body{
     margin: 0;
     font-family: Poppins;
 }
-.container{
+.container {
     width: 900px;
     margin: auto;
     max-width: 90vw;
     text-align: center;
     padding-top: 10px;
     transition: transform .5s;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
 }
 svg{
     width: 20px;
@@ -36,11 +39,9 @@ svg{
     width: 90%;
     filter: drop-shadow(0 50px 20px #0009);
 }
-.listProduct{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
+./*container {
+   
+}*/
 .listProduct .item{
     background-color: #EEEEE6;
     padding: 20px;
@@ -135,7 +136,7 @@ body.showCart .container{
     width: 0;
 }
 @media only screen and (max-width: 992px) {
-    .listProduct{
+    .container{
         grid-template-columns: repeat(3, 1fr);
     }
 }
@@ -143,7 +144,7 @@ body.showCart .container{
 
 /* mobile */
 @media only screen and (max-width: 768px) {
-    .listProduct{
+    .container{
         grid-template-columns: repeat(2, 1fr);
     }
 }
