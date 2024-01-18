@@ -20,7 +20,7 @@ namespace MackDotNetCore.ShoppingCardWebApp.Controllers
         public IActionResult Index()
         {
             List<ItemDataModel> lst = _context.Data.ToList();
-            if(lst is not null )
+            if (lst is not null)
             {
                 ItemDataResponseModel responseModel = new ItemDataResponseModel
                 {
@@ -29,9 +29,6 @@ namespace MackDotNetCore.ShoppingCardWebApp.Controllers
                 return View("Index", responseModel);
             }
             return NotFound("No Data Found.");
-           
-
-            
         }
 
         public IActionResult Privacy()

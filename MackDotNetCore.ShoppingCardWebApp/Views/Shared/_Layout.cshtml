@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="~/css/style.css" rel="stylesheet" />
-    <base href="/"/>
+    <base href="/" />
 </head>
 <body>
     <header class="d-block">
@@ -41,11 +41,11 @@
     </div>
 
     <footer class="border-top footer text-muted text-center pt-2">
-           ShoppingCardWebApp
+        ShoppingCardWebApp
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/app.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
+    @await RenderSectionAsync("scripts", required: false)
 </body>
 </html>
