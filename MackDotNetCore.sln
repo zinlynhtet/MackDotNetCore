@@ -26,6 +26,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.ShoppingCard
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.DbFirstCommandApp", "MackDotNetCore.DbFirstCommandApp\MackDotNetCore.DbFirstCommandApp.csproj", "{073F0658-13E2-4267-AED5-A289CAFCD586}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.LoggingConsoleApp", "MackDotNetCore.LoggingConsoleApp\MackDotNetCore.LoggingConsoleApp.csproj", "{CC39532B-D119-4311-A0B6-A40C0C7707CE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{073F0658-13E2-4267-AED5-A289CAFCD586}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{073F0658-13E2-4267-AED5-A289CAFCD586}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{073F0658-13E2-4267-AED5-A289CAFCD586}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CC39532B-D119-4311-A0B6-A40C0C7707CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CC39532B-D119-4311-A0B6-A40C0C7707CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CC39532B-D119-4311-A0B6-A40C0C7707CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CC39532B-D119-4311-A0B6-A40C0C7707CE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
