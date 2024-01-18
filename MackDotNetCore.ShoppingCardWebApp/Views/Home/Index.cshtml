@@ -2,30 +2,82 @@
 @{
     ViewData["Title"] = "Home Page";
 }
-<div class="container">
-@foreach (var item in Model.Data)
-{
-        <div class="listProduct">
-            <div data-id="@item.ItemId" class="item">
-                <img src="~/assets/image/@(item.ItemId).png" />
-                <h2>@item.Name</h2>
-                <div class="price">$@item.Price</div>
-                <button class="addCart">Add To Cart</button>
-            </div>
-        </div>
-}
-</div>
 
 <div class="cartTab">
     <h1>Shopping Cart</h1>
     <div class="listCart">
+        <!-- Cart items will be dynamically added here -->
     </div>
     <div class="btn">
         <button class="close">CLOSE</button>
         <button class="checkOut">Check Out</button>
     </div>
 </div>
+<div class="container">
+    @foreach (var item in Model.Data)
+    {
+        <div class="listProduct">
+            <div data-id="@item.ItemId" class="item">
+                <img src="~/assets/image/@(item.ItemId).png" />
+                <h2>@item.Name</h2>
+                <div>
+                    Price:
+                    <span class="price"> $@item.Price</span>
+                 </div>
+                <div class="cartControls">
+                    <div>Item Count :<span class="itemCount" id="count_@item.ItemId">1</span> </div>
+                    <button class="reduceCount" onclick="reduceCount('@item.ItemId')">-</button>
+                    <button class="increaseCount" onclick="increaseCount('@item.ItemId')">+</button>
+                    <button class="addToCart" onclick="addToCart('@item.ItemId', '@item.Name', @item.Price)">Add To Cart</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
 
-@section scripts{
-    (#addCard).click
+@section scripts {
+    <script>
+        function addToCart(itemId, itemName, itemPrice) {
+
+            var countElement = document.getElementById('count_' + itemId);
+            var count = parseInt(countElement.innerHTML);
+
+            var cartItem = document.createElement('div');
+            cartItem.classList.add('cartItem');
+            cartItem.innerHTML = `
+                <div class="cartItemInfo">
+                    <span class="itemImage">
+                        <img src="~/assets/image/${itemId}.png" alt="${itemName}" />
+                    </span>
+                    <span class="itemName">${itemName}</span>
+                    <span class="itemPrice">$${itemPrice * count}</span>
+                    <span class="itemCountInCart">Quantity: ${count}</span>
+                </div>
+                <button class="removeFromCart" onclick="removeFromCart(this)">Remove</button>
+            `;
+
+            document.querySelector('.listCart').appendChild(cartItem);
+        }
+
+        function increaseCount(itemId) {
+
+            var countElement = document.getElementById('count_' + itemId);
+            var count = parseInt(countElement.innerHTML);
+            count++;
+            countElement.innerHTML = count;
+        }
+
+        function reduceCount(itemId) {
+
+            var countElement = document.getElementById('count_' + itemId);
+            var count = parseInt(countElement.innerHTML);
+            count = Math.max(0, count - 1);
+            countElement.innerHTML = count;
+        }
+
+        function removeFromCart(button) {
+
+            button.parentNode.parentNode.removeChild(button.parentNode);
+        }
+    </script>
 }
