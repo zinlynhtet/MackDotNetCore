@@ -20,11 +20,18 @@ namespace MackDotNetCore.ShoppingCardWebApp.Controllers
         public IActionResult Index()
         {
             List<ItemDataModel> lst = _context.Data.ToList();
-            ItemDataResponseModel responseModel = new ItemDataResponseModel
+            if(lst is not null )
             {
-                Data = lst
-            };
-            return View("Index", responseModel);
+                ItemDataResponseModel responseModel = new ItemDataResponseModel
+                {
+                    Data = lst
+                };
+                return View("Index", responseModel);
+            }
+            return NotFound("No Data Found.");
+           
+
+            
         }
 
         public IActionResult Privacy()
