@@ -23,11 +23,11 @@
                 <div>
                     Price:
                     <span class="price"> $@item.Price</span>
-                 </div>
+                </div>
                 <div class="cartControls">
                     <div>Item Count :<span class="itemCount" id="count_@item.ItemId">1</span> </div>
                     <button class="reduceCount" onclick="reduceCount('@item.ItemId')">-</button>
-                    <button class="increaseCount" onclick="increaseCount('@item.ItemId')">+</button>
+                    <button class="increaseCount" onclick="increaseCount('@item.ItemId', '@item.Name', @item.Price)">+</button>
                     <button class="addToCart" onclick="addToCart('@item.ItemId', '@item.Name', @item.Price)">Add To Cart</button>
                 </div>
             </div>
@@ -42,41 +42,52 @@
             var countElement = document.getElementById('count_' + itemId);
             var count = parseInt(countElement.innerHTML);
 
-            var cartItem = document.createElement('div');
-            cartItem.classList.add('cartItem');
-            cartItem.innerHTML = `
-                <div class="cartItemInfo">
-                    <span class="itemImage">
-                        <img src="~/assets/image/${itemId}.png" alt="${itemName}" />
-                    </span>
-                    <span class="itemName">${itemName}</span>
-                    <span class="itemPrice">$${itemPrice * count}</span>
-                    <span class="itemCountInCart">Quantity: ${count}</span>
-                </div>
-                <button class="removeFromCart" onclick="removeFromCart(this)">Remove</button>
-            `;
+            var existingCartItem = document.querySelector('.cartItem[data-id="' + itemId + '"]');
 
-            document.querySelector('.listCart').appendChild(cartItem);
+            if (existingCartItem) {
+
+                var existingCount = parseInt(existingCartItem.querySelector('.itemCountInCart').textContent.split(':')[1].trim());
+                existingCount += count;
+                existingCartItem.querySelector('.itemCountInCart').textContent = 'Quantity: ' + existingCount;
+
+                var totalPrice = itemPrice * existingCount;
+                existingCartItem.querySelector('.itemPrice').textContent = '$' + totalPrice;
+            } else {
+                var cartItem = document.createElement('div');
+                cartItem.classList.add('cartItem');
+                cartItem.setAttribute('data-id', itemId);
+                cartItem.innerHTML = `
+                    <div class="cartItemInfo">
+                        <span class="itemName">${itemName}</span>
+                        <span class="itemPrice">$${itemPrice * count}</span>
+                        <span class="itemCountInCart">Quantity: ${count}</span>
+                    </div>
+                    <button class="removeFromCart" onclick="removeFromCart(this)">Remove</button>
+                `;
+
+                document.querySelector('.listCart').appendChild(cartItem);
+            }
         }
 
-        function increaseCount(itemId) {
-
+        function increaseCount(itemId, itemName, itemPrice) {
             var countElement = document.getElementById('count_' + itemId);
             var count = parseInt(countElement.innerHTML);
             count++;
             countElement.innerHTML = count;
+
+            addToCart(itemId, itemName, itemPrice);
         }
 
         function reduceCount(itemId) {
-
             var countElement = document.getElementById('count_' + itemId);
             var count = parseInt(countElement.innerHTML);
             count = Math.max(0, count - 1);
             countElement.innerHTML = count;
+
+            addToCart(itemId);
         }
 
         function removeFromCart(button) {
-
             button.parentNode.parentNode.removeChild(button.parentNode);
         }
     </script>
