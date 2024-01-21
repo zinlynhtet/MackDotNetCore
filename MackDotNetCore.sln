@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.NlogExampleC
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.Log4NetExamples", "MackDotNetCore.Log4NetExamples\MackDotNetCore.Log4NetExamples.csproj", "{0439EC1E-9E18-44C1-8523-3D6CF99022C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.SignalRChatApp", "MackDotNetCore.SignalRChatApp\MackDotNetCore.SignalRChatApp.csproj", "{F029AB85-6A2B-49D8-84E1-BB829B518F39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,10 @@ Global
 		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F029AB85-6A2B-49D8-84E1-BB829B518F39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F029AB85-6A2B-49D8-84E1-BB829B518F39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F029AB85-6A2B-49D8-84E1-BB829B518F39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F029AB85-6A2B-49D8-84E1-BB829B518F39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
