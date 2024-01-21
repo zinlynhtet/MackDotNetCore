@@ -30,12 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.LoggingConso
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.NlogExampleConsoleApp", "MackDotNetCore.NlogExampleConsoleApp\MackDotNetCore.NlogExampleConsoleApp.csproj", "{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D8A356D-86B1-46F5-AF9C-2E318E0A65A0}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.Log4NetExamples", "MackDotNetCore.Log4NetExamples\MackDotNetCore.Log4NetExamples.csproj", "{0439EC1E-9E18-44C1-8523-3D6CF99022C7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.Log4NetExamples", "MackDotNetCore.Log4NetExamples\MackDotNetCore.Log4NetExamples.csproj", "{0439EC1E-9E18-44C1-8523-3D6CF99022C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
