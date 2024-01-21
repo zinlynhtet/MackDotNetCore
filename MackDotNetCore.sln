@@ -28,12 +28,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.DbFirstComma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.LoggingConsoleApp", "MackDotNetCore.LoggingConsoleApp\MackDotNetCore.LoggingConsoleApp.csproj", "{CC39532B-D119-4311-A0B6-A40C0C7707CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.NlogExampleConsoleApp", "MackDotNetCore.NlogExampleConsoleApp\MackDotNetCore.NlogExampleConsoleApp.csproj", "{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MackDotNetCore.NlogExampleConsoleApp", "MackDotNetCore.NlogExampleConsoleApp\MackDotNetCore.NlogExampleConsoleApp.csproj", "{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6D8A356D-86B1-46F5-AF9C-2E318E0A65A0}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MackDotNetCore.Log4NetExamples", "MackDotNetCore.Log4NetExamples\MackDotNetCore.Log4NetExamples.csproj", "{0439EC1E-9E18-44C1-8523-3D6CF99022C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +91,10 @@ Global
 		{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{949AD4B5-FE9D-4ADA-B62A-9B6151092C94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0439EC1E-9E18-44C1-8523-3D6CF99022C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
