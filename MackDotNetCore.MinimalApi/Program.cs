@@ -1,6 +1,7 @@
 using MackDotNetCore.MinimalApi;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
+using NLog.Extensions.Logging;
 using Serilog;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -16,7 +17,12 @@ try
     var builder = WebApplication.CreateBuilder(args);
 
     builder.Host.UseSerilog();
-
+    builder.Host.ConfigureLogging(logging =>
+    {
+        logging.ClearProviders();
+        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
+        logging.AddNLog();
+    });
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
@@ -66,5 +72,4 @@ public class UpperCaseNamingPolicy : JsonNamingPolicy
         chars[0] = char.ToUpper(chars[0]);
         return new string(chars);
     }
-
 }

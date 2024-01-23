@@ -3,7 +3,7 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="cartTab">
+@* <div class="cartTab">
     <h1>Shopping Cart</h1>
     <div class="listCart">
         <!-- Cart items will be dynamically added here -->
@@ -33,62 +33,157 @@
             </div>
         </div>
     }
-</div>
+</div> *@
+<div class="container">
+    <header>
+        <div class="title">PRODUCT LIST</div>
+        <div class="icon-cart">
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 20">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 15a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm0 0h8m-8 0-1-4m9 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-9-4h10l2-7H3m2 7L3 4m0 0-.792-3H1" />
+            </svg>
+            <span>0</span>
+        </div>
+    </header>
+    <div class="listProduct">
+        @foreach (var item in Model.Data)
+        {
+            @*  <div data-id="@item.ItemId" class="item">
+        <img src="~/assets/image/@(item.ItemId).png" />
+        <h2>@item.Name</h2>
+        <div>
+        Price:
+        <span class="price"> $@item.Price</span>
+        </div>
+        <div class="cartControls">
+        <div>Item Count :<span class="itemCount" id="count_@item.ItemId">1</span> </div>
+        <button class="reduceCount" onclick="reduceCount('@item.ItemId')">-</button>
+        <button class="increaseCount" onclick="increaseCount('@item.ItemId', '@item.Name', @item.Price)">+</button>
+        <button class="addCart" onclick="addToCart('@item.ItemId', '@item.Name', @item.Price)">Add To Cart</button>
+        </div>
+        </div> *@
 
+            <div data-id="@item.ItemId" class="item">
+                <img src="~/assets/image/@(item.ItemId).png" />
+                <h2 id="product_name" value="@item.Name">@item.Name</h2>
+                <div class="price" id="product_price" value="@item.Price">$@item.Price</div>
+                <button class="addCart">Add To Cart</button>
+            </div>
+        }
+    </div>
+</div>
+<div class="cartTab">
+    <h1>Shopping Cart</h1>
+    <div class="listCart">
+    </div>
+    <div class="btn">
+        <button class="close">CLOSE</button>
+        <button class="checkOut">Check Out</button>
+    </div>
+</div>
 @section scripts {
     <script>
-        function addToCart(itemId, itemName, itemPrice) {
+        let listProductHTML = document.querySelector('.listProduct');
+        let listCartHTML = document.querySelector('.listCart');
+        let iconCart = document.querySelector('.icon-cart');
+        let iconCartSpan = document.querySelector('.icon-cart span');
+        let body = document.querySelector('body');
+        let closeCart = document.querySelector('.close');
+        let products = [];
+        let cart = [];
 
-            var countElement = document.getElementById('count_' + itemId);
-            var count = parseInt(countElement.innerHTML);
 
-            var existingCartItem = document.querySelector('.cartItem[data-id="' + itemId + '"]');
+        iconCart.addEventListener('click', () => {
+            body.classList.toggle('showCart');
+        })
+        closeCart.addEventListener('click', () => {
+            body.classList.toggle('showCart');
+        })
 
-            if (existingCartItem) {
-
-                var existingCount = parseInt(existingCartItem.querySelector('.itemCountInCart').textContent.split(':')[1].trim());
-                existingCount += count;
-                existingCartItem.querySelector('.itemCountInCart').textContent = 'Quantity: ' + existingCount;
-
-                var totalPrice = itemPrice * existingCount;
-                existingCartItem.querySelector('.itemPrice').textContent = '$' + totalPrice;
-            } else {
-                var cartItem = document.createElement('div');
-                cartItem.classList.add('cartItem');
-                cartItem.setAttribute('data-id', itemId);
-                cartItem.innerHTML = `
-                    <div class="cartItemInfo">
-                        <span class="itemName">${itemName}</span>
-                        <span class="itemPrice">$${itemPrice * count}</span>
-                        <span class="itemCountInCart">Quantity: ${count}</span>
-                    </div>
-                    <button class="removeFromCart" onclick="removeFromCart(this)">Remove</button>
-                `;
-
-                document.querySelector('.listCart').appendChild(cartItem);
+        listProductHTML.addEventListener('click', (event) => {
+            let positionClick = event.target;
+            if (positionClick.classList.contains('addCart')) {
+                let id_product = positionClick.parentElement.dataset.id;
+                console.log(id_product);
+                addToCart(id_product);
             }
+        })
+        const addToCart = (product_id) => {
+            let CartItem = {
+                id: product_id,
+                name: $('#product_name').text(),
+                price: $('#product_price').text()
+            };
+            console.log({ CartItem });
+            // addCartToHTML();
+            // addCartToMemory();
+        }
+        const addCartToMemory = () => {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+        const addCartToHTML = () => {
+            listCartHTML.innerHTML = '';
+            let totalQuantity = 0;
+            if (cart.length > 0) {
+                cart.forEach(item => {
+                    totalQuantity = totalQuantity + item.quantity;
+                    let newItem = document.createElement('div');
+                    newItem.classList.add('item');
+                    newItem.dataset.id = item.product_id;
+
+                    let positionProduct = products.findIndex((value) => value.id == item.product_id);
+                    let info = products[positionProduct];
+                    listCartHTML.appendChild(newItem);
+                    newItem.innerHTML = `
+                    <div class="image">
+                         
+                    </div>
+                    <div class="name">
+                    ${info.name}
+                    </div>
+                    <div class="totalPrice">$${info.price * item.quantity}</div>
+                    <div class="quantity">
+                        <span class="minus"><</span>
+                        <span>${item.quantity}</span>
+                        <span class="plus">></span>
+                    </div>
+                                    `;
+                })
+            }
+            iconCartSpan.innerText = totalQuantity;
         }
 
-        function increaseCount(itemId, itemName, itemPrice) {
-            var countElement = document.getElementById('count_' + itemId);
-            var count = parseInt(countElement.innerHTML);
-            count++;
-            countElement.innerHTML = count;
+        listCartHTML.addEventListener('click', (event) => {
+            let positionClick = event.target;
+            if (positionClick.classList.contains('minus') || positionClick.classList.contains('plus')) {
+                let product_id = positionClick.parentElement.parentElement.dataset.id;
+                let type = 'minus';
+                if (positionClick.classList.contains('plus')) {
+                    type = 'plus';
+                }
+                changeQuantityCart(product_id, type);
+            }
+        })
+        const changeQuantityCart = (product_id, type) => {
+            let positionItemInCart = cart.findIndex((value) => value.product_id == product_id);
+            if (positionItemInCart >= 0) {
+                let info = cart[positionItemInCart];
+                switch (type) {
+                    case 'plus':
+                        cart[positionItemInCart].quantity = cart[positionItemInCart].quantity + 1;
+                        break;
 
-            addToCart(itemId, itemName, itemPrice);
-        }
-
-        function reduceCount(itemId) {
-            var countElement = document.getElementById('count_' + itemId);
-            var count = parseInt(countElement.innerHTML);
-            count = Math.max(0, count - 1);
-            countElement.innerHTML = count;
-
-            addToCart(itemId);
-        }
-
-        function removeFromCart(button) {
-            button.parentNode.parentNode.removeChild(button.parentNode);
+                    default:
+                        let changeQuantity = cart[positionItemInCart].quantity - 1;
+                        if (changeQuantity > 0) {
+                            cart[positionItemInCart].quantity = changeQuantity;
+                        } else {
+                            cart.splice(positionItemInCart, 1);
+                        }
+                        break;
+                }
+            }
+            addCartToHTML();
+            addCartToMemory();
         }
     </script>
 }
