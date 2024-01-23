@@ -1,0 +1,16 @@
+﻿@model List<AddToCardListModel>
+
+@foreach (var item in Model)
+{
+    <div class="image">
+    </div>
+    <div class="name">
+        @item.Name
+    </div>
+    <div class="totalPrice">$$ @(item.Price * item.Quantity)</div>
+    <div class="quantity">
+        <span class="minus" data-id="@item.ItemId">-</span>
+        <span>@item.Quantity</span>
+        <span class="plus" data-id="@item.ItemId">+</span>
+    </div>
+}
