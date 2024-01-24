@@ -1,30 +1,18 @@
 using MackDotNetCore.MinimalApi;
 using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
-using NLog.Extensions.Logging;
-using Serilog;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("logs/myapp.txt", rollingInterval: RollingInterval.Hour, fileSizeLimitBytes: 1024)
-    .CreateLogger();
-
-try
-{
-    Log.Information("Starting web application");
+  
     var builder = WebApplication.CreateBuilder(args);
 
-    builder.Host.UseSerilog();
-    builder.Host.ConfigureLogging(logging =>
-    {
-        logging.ClearProviders();
-        logging.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Trace);
-        logging.AddNLog();
-    });
+  
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Logging.ClearProviders();
+    builder.Logging.AddLog4Net();
 
     builder.Services.Configure<JsonOptions>(options =>
     {
@@ -51,15 +39,6 @@ try
     app.UseHttpsRedirection();
     app.AddBlogService();
     app.Run();
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Application terminated unexpectedly");
-}
-finally
-{
-    Log.CloseAndFlush();
-}
 
 public class UpperCaseNamingPolicy : JsonNamingPolicy
 {
