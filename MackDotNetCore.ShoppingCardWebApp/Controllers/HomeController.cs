@@ -66,7 +66,7 @@ namespace MackDotNetCore.ShoppingCardWebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RemoveFromCart(AddToCartRequestModel requestModel)
+        public IActionResult RemoveFromCart(AddToCartRequestModel requestModel)
         {
             var item = items.FirstOrDefault(x => x.ItemId == requestModel.ItemId);
             if (item is null)
@@ -78,7 +78,7 @@ namespace MackDotNetCore.ShoppingCardWebApp.Controllers
                 items = items.Where(x => x.ItemId != requestModel.ItemId).ToList();
             }
 
-            result:
+        result:
             return Json(new { Count = items.Count });
         }
 
