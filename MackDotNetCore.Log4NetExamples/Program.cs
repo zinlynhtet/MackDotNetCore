@@ -5,7 +5,6 @@ using System.Reflection;
 
 ILog log = LogManager.GetLogger(typeof(Program));
 
-
 Assembly assembly = Assembly.GetExecutingAssembly();
 string projectName = assembly.GetName().Name!;
 
