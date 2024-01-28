@@ -74,12 +74,11 @@ namespace MackDotNetCore.ATMConsoleApp.ATMConseoleExample
             }
         }
 
-        // Helper method to verify credentials
         private bool VerifyCredentials(double cardNumber, int pin, bool skipVerification = false)
         {
             if (skipVerification)
             {
-                return true; // Skip verification for registration
+                return true;
             }
 
             return _dbContext.Blogs.Any(x => x.CardNum == cardNumber && x.Pin == pin);
@@ -124,7 +123,6 @@ namespace MackDotNetCore.ATMConsoleApp.ATMConseoleExample
                 Console.WriteLine("Invalid balance entered.");
             }
         }
-
 
         private void Deposit(double cardNumber, int pin)
         {
