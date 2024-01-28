@@ -9,7 +9,6 @@ namespace MackDotNetCore.ShoppingCardWebApp
         {
 
         }
-
         public DbSet<ItemDataModel> Data { get; set; }
     }
 }
