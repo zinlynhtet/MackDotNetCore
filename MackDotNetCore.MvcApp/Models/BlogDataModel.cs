@@ -36,8 +36,6 @@ namespace MackDotNetCore.MvcApp.Models
             PageSize = pageSize;
             PageCount = pageCount;
             PageUrl = pageUrl;
-            
-          
         }
 
         public int PageNo { get; set; }
