@@ -71,6 +71,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 			TempData["IsSuccess"] = result > 0;
 			return Redirect("/home");
 		}
+
 		[ActionName("Deposit")]
 		public IActionResult ATMDeposit()
 		{
@@ -108,6 +109,7 @@ namespace MackDotNetCore.AtmApp.Controllers
 		{
 			return View("ATMCheck");
 		}
+
 		[HttpGet]
 		[ActionName("Check")]
 		public async Task<IActionResult> ATMCheck(BlogDataModel reqModel)
