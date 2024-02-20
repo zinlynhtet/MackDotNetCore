@@ -41,7 +41,6 @@ namespace AEHKLMNSTZDotNetCore.MvcApp.Controllers
             return View("BlogCreate");
         }
 
-
         [HttpPost]
         [ActionName("Save")]
         public async Task<IActionResult> BlogSave(BlogDataModel reqModel)
